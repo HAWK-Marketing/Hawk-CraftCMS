@@ -1,0 +1,104 @@
+# This file describes an application. You can have multiple applications
+# in the same project.
+
+# The name of this app. Must be unique within a project.
+name: app
+
+# The type of the application to build.
+type: php:7.2
+
+build:
+  flavor: composer
+
+# The relationships of the application with services or other applications.
+#
+# The left-hand side is the name of the relationship as it will be exposed
+# to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
+# side is in the form `<service name>:<endpoint name>`.
+relationships:
+  database: 'mysqldb:mysql'
+
+# The size of the persistent disk of the application (in MB).
+disk: 2048
+
+# The mounts that will be performed when the package is deployed.
+mounts:
+  # Storage for Craft-writeable files.
+  "/storage": "shared:files/storage"
+  "/web/assets": "shared:files/assets"
+  "/web/cpresources": "shared:files/cpresources"
+  # The license file needs to be runtime writeable.
+  "/license": "shared:files/license"
+
+dependencies:
+  nodejs:
+    yarn: "*"
+
+# The hooks executed at various points in the lifecycle of the application.
+hooks:
+  build: |
+    curl -sS https://platform.sh/cli/installer | php
+    yarn
+    yarn prod
+  deploy: |
+    php craft migrate --type=app
+
+# The configuration of app when it is exposed to the web.
+web:
+  locations:
+    "/":
+      # The public directory of the app, relative to its root.
+      root: "web"
+
+      # The front-controller script to send non-static requests to.
+      passthru: "/index.php"
+
+      # How long to allow static assets from this location to be cached.
+      #
+      # Can be a time in seconds, or -1 for no caching. Times can be
+      # suffixed with "s" (seconds), "m" (minutes), "h" (hours), "d"
+      # (days), "w" (weeks), "M" (months, as 30 days) or "y" (years, as
+      # 365 days).
+      expires: 5m
+
+      # Deny access to static files in this location.
+      allow: false
+
+      # Rules for specific URI patterns.
+      rules:
+        # Allow access to common static files.
+        '\.(jpe?g|JPE?G|WEBP|PNG|GIF|PDF|webp|png|gif|pdf|svgz?|css|js|map|ico|bmp|eot|woff2?|otf|ttf)$':
+          allow: true
+        '^/robots\.txt$':
+          allow: true
+        '^/google7dac7c0968a35ce2\.html$':
+          allow: true
+        '^/analytics\.txt$':
+          allow: true
+        '^/sitemap\.xml$':
+          allow: true
+
+crons:
+  renewcert:
+    spec: '0 7 3 * *'
+    cmd: |
+      if [ "$PLATFORM_BRANCH" = master ]; then
+          platform redeploy --yes --no-wait
+      fi
+  snapshot:
+    spec: '0 5 * * *'
+    cmd: |
+      if [ "$PLATFORM_BRANCH" = master ]; then
+          platform snapshot:create --yes --no-wait
+      fi
+  queue_run:
+    spec: '*/5 * * * *'
+    cmd: |
+      if [ "$PLATFORM_BRANCH" = master ]; then
+          php craft queue/run
+      fi
+
+# Increase workers by adjusting sizing hints
+runtime:
+  sizing_hints:
+    request_memory: 20
