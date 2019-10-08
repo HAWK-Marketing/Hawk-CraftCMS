@@ -1,24 +1,10 @@
 {
-    "name": "craftcms/craft",
+    "name": "hawkca/craft",
     "description": "HAWK Craft CMS scaffolding project",
     "version": "0.0.1",
-    "keywords": [
-        "craft",
-        "cms",
-        "craftcms",
-        "project"
-    ],
     "license": "Unlicense",
     "homepage": "https://craftcms.com/",
     "type": "project",
-    "support": {
-        "email": "support@craftcms.com",
-        "issues": "https://github.com/craftcms/cms/issues",
-        "forum": "https://craftcms.stackexchange.com/",
-        "source": "https://github.com/craftcms/cms",
-        "docs": "https://craftcms.com/docs",
-        "rss": "https://craftcms.com/changelog.rss"
-    },
     "require": {
         "craftcms/cms": "^3.3",
         "vlucas/phpdotenv": "^3.6"
