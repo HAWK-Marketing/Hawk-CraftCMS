@@ -27,16 +27,8 @@ return [
                 ],
             ],
         ],
-        'components' => [
-            'class' => \modules\components\Components::class,
-            'components' => [
-                'components' => [
-                    'class' => 'modules\components\services\ComponentService',
-                ],
-            ],
-        ]
     ],
-    'bootstrap' => ['hawk', 'components'],
+    'bootstrap' => ['hawk'],
     'components' => [
         'deprecator' => [
             'throwExceptions' => YII_DEBUG,

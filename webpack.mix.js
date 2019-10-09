@@ -30,7 +30,7 @@
 // 🎚️ Base config
 const config = {
     // Dev domain to proxy
-    devProxyDomain: process.env.DEFAULT_SITE_URL || "http://site.test",
+    devProxyDomain: process.env.SITE_URL || "http://site.test",
     // Paths to observe for changes then trigger a full page reload
     devWatchPaths: ["templates"],
     // Port to use with webpack-dev-server
@@ -58,11 +58,11 @@ const globby = require("globby")
 // 🎚️ Source folders
 const source = {
     icons: path.resolve("components"),
-    images: path.resolve("src/images"),
+    images: path.resolve("resources/images"),
     scripts: path.resolve("components"),
     styles: path.resolve("components"),
-    static: path.resolve("src/static"),
-    templates: path.resolve("src/templates"),
+    static: path.resolve("resources/static"),
+    templates: path.resolve("templates"),
 }
 
 // 🎚️ Misc

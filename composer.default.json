@@ -1,18 +1,26 @@
 {
     "require": {
-        "craftcms/cms": "^3.3",
-        "vlucas/phpdotenv": "^3.6",
-        "yiisoft/yii2-redis": "^2.0.6",
-        "nystudio107/craft-imageoptimize": "^1.0.0",
-        "verbb/field-manager": "^2.1.0",
-        "topshelfcraft/wordsmith": "^3.1.1",
-        "spicyweb/craft-neo": "^2.5.3",
-        "nystudio107/craft-seomatic": "^3.2.0",
-        "nystudio107/craft-twigpack": "^1.1.0",
-        "hawkca/craft-admin": "dev-master",
-        "hawkca/components": "dev-master",
         "composer/installers": "^1.7",
-        "oomphinc/composer-installers-extender": "^1.1"
+        "craftcms/cms": "^3.3",
+        "craftcms/redactor": "^2.4",
+        "fruitstudios/linkit": "^1.1",
+        "hawkca/components": "dev-master",
+        "hawkca/craft-admin": "dev-master",
+        "nystudio107/craft-imageoptimize": "^1.0.0",
+        "nystudio107/craft-minify": "^1.2",
+        "nystudio107/craft-seomatic": "^3.2.0",
+        "nystudio107/craft-templatecomments": "^1.1",
+        "nystudio107/craft-twigpack": "^1.1.0",
+        "oomphinc/composer-installers-extender": "^1.1",
+        "platformsh/config-reader": "^2.3.0",
+        "spicyweb/craft-neo": "^2.5.3",
+        "studioespresso/craft-dumper": "^2.0",
+        "studioespresso/craft-navigate": "^2.4",
+        "topshelfcraft/wordsmith": "^3.1.1",
+        "verbb/field-manager": "^2.1.0",
+        "vlucas/phpdotenv": "^3.6",
+        "wbrowar/guide": "^2.1",
+        "yiisoft/yii2-redis": "^2.0.6"
     },
     "autoload": {
         "psr-4": {
@@ -42,7 +50,10 @@
         "installer-types": ["craft-module"],
         "installer-paths": {
             "modules/hawk": ["hawkca/craft-admin"],
-            "modules/components": ["hawkca/craft-components"]
-        }
+            "modules/components": ["hawkca/components"]
+        },
+        "installer-disable": [
+            "craft"
+        ]
     }
 }
