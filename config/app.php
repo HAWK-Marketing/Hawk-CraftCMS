@@ -26,21 +26,19 @@ return [
                     'class' => 'modules\hawkmodule\services\EmailSupport',
                 ],
             ],
-        ],
-        'components' => [
-            'class' => \modules\components\Components::class,
-            'components' => [
-                'components' => [
-                    'class' => 'modules\components\services\ComponentService',
-                ],
-            ],
         ]
     ],
-    'bootstrap' => ['hawk', 'components'],
+    'bootstrap' => ['hawk'],
     'components' => [
         'deprecator' => [
             'throwExceptions' => YII_DEBUG,
         ],
+        'db' => function() {
+            $config = craft\helpers\App::dbConfig();
+            $config['enableSchemaCache'] = true;
+            $config['schemaCacheDuration'] = 60 * 60 * 24;
+            return Craft::createObject($config);
+        },
         /* Turn on if using Redis
         'redis' => [
             'class' => yii\redis\Connection::class,

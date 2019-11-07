@@ -35,15 +35,23 @@
 {# -- Page body -- #}
 {% block bodyHtml %}
     {# -- Header -- #}
-    {% include "_partials/header.twig" %}
+    {% if header is not defined %}
+        {% set title = 'floating' %}
+        {% set header = [] %}
+    {% endif %}
+    {% include "_partials/header.twig" with { header: header } %}
 
     <main>
 
         {# -- Content that appears below the primary content block -- #}
         {% block content %}
+            {% include "_partials/content.twig" %}
         {% endblock %}
 
     </main>
+    {# -- Search Block -- #}
+    {% include "_partials/search.twig" %}
+
     {# -- Footer -- #}
     {% include "_partials/footer.twig" %}
 {% endblock bodyHtml %}

@@ -1,0 +1,38 @@
+/**
+ * app.css
+ *
+ * The entry point for the css.
+ *
+ */
+
+@import './reset.scss';
+
+/**
+ * Add variables
+ */
+@import './variables.scss';
+
+/**
+ * Include typography
+ */
+@import './typography.scss';
+
+/**
+ * Include components
+ */
+@import './../components/_atoms/button/button.scss';
+
+@import './../components/_widgets/header/header.scss';
+
+/**
+ * Include styles for individual pages
+ *
+ */
+@import './pages/homepage.scss';
+
+
+/**
+ * Include vendor css.
+ *
+ */
+@import 'vendor.scss';

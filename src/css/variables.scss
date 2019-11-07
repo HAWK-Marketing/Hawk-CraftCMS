@@ -1,0 +1,21 @@
+/**
+ * variables.css
+ *
+ * Variables for the website
+ *
+ */
+/* fonts */
+$font-family-body: Helvetica, sans-serif;
+$font-family-header: Helvetica, sans-serif;
+
+/* colours */
+$color-black : #000;
+
+
+/* grid */
+$base-width: 114rem;
+
+/* spacing */
+
+/* Media queries */
+$breakpoints: (smallPhone: 600px, phone: 992px, desktop: 1200px, largeScreen: 1600px);

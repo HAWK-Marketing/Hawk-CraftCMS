@@ -27,16 +27,16 @@ return [
     // If `devMode` is on, use webpack-dev-server to all for HMR (hot module reloading)
     'useDevServer' => getenv('DEV_MODE'),
     // The JavaScript entry from the manifest.json to inject on Twig error pages
-    'errorEntry' => '',
+    'errorEntry' => 'app.js',
     // Manifest file names
     'manifest' => [
-        'legacy' => 'dist/mix-manifest.json',
-        'modern' => 'dist/mix-manifest.json',
+        'legacy' => 'manifest-legacy.json',
+        'modern' => 'manifest.json',
     ],
     // Public server config
     'server' => [
-        'manifestPath' => '@webroot/',
-        'publicPath' => '/dist/',
+        'manifestPath' => '@webroot/dist/',
+        'publicPath' => '@web/',
     ],
     // webpack-dev-server config
     'devServer' => [
@@ -46,7 +46,7 @@ return [
     // Local files config
     'localFiles' => [
         'basePath' => '@webroot/',
-        'criticalPrefix' => 'dist/',
-        'criticalSuffix' => '-critical.css',
+        'criticalPrefix' => 'dist/criticalcss/',
+        'criticalSuffix' => '_critical.min.css',
     ],
 ];

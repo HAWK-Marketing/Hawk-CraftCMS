@@ -1,6 +1,6 @@
-dateModified: 1566064218
+dateModified: 1570628553
 email:
-  fromEmail: development@hawk.ca
+  fromEmail: development@modernmedia.ca
   fromName: $SITE_NAME
   transportType: craft\mail\transportadapters\Sendmail
 fieldGroups:
@@ -19,15 +19,15 @@ fields:
     type: craft\fields\Assets
     settings:
       useSingleFolder: ''
-      defaultUploadLocationSource: 'volume:5c642d7e-b16b-4836-9575-668d75d242e5'
+      defaultUploadLocationSource: 'volume:7ecd1ebd-978a-4658-b737-afe3333fc256'
       defaultUploadLocationSubpath: ''
-      singleUploadLocationSource: 'volume:5c642d7e-b16b-4836-9575-668d75d242e5'
+      singleUploadLocationSource: 'volume:7ecd1ebd-978a-4658-b737-afe3333fc256'
       singleUploadLocationSubpath: ''
       restrictFiles: '1'
       allowedKinds:
         - image
       sources:
-        - 'volume:5c642d7e-b16b-4836-9575-668d75d242e5'
+        - 'volume:7ecd1ebd-978a-4658-b737-afe3333fc256'
       source: null
       targetSiteId: null
       viewMode: large
@@ -72,23 +72,11 @@ fields:
     contentColumnType: text
     fieldGroup: d08a0d16-0e00-49e6-9cd4-465fa2d65d7d
 plugins:
-  image-optimize:
-    edition: standard
-    enabled: true
-    schemaVersion: 1.0.0
-  seomatic:
-    edition: standard
-    enabled: true
-    schemaVersion: 3.0.8
-  twigpack:
-    edition: standard
-    enabled: true
-    schemaVersion: 1.1.0
-  wordsmith:
-    edition: standard
-    enabled: true
-    schemaVersion: 1.0.0
   field-manager:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  image-optimize:
     edition: standard
     enabled: true
     schemaVersion: 1.0.0
@@ -96,6 +84,55 @@ plugins:
     edition: standard
     enabled: true
     schemaVersion: 2.2.0
+  seomatic:
+    edition: standard
+    enabled: true
+    schemaVersion: 3.0.8
+  twigpack:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  wordsmith:
+    edition: standard
+    enabled: true
+    schemaVersion: 0.0.0.0
+  guide:
+    edition: lite
+    enabled: false
+    schemaVersion: 2.0.0
+    settings:
+      templatePath: _guide
+      assetVolume: dcbd85d8-6f4d-48bb-854f-63a188dae698
+      clientName: $SITE_NAME
+      myCompanyName: HAWK
+  minify:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  linkit:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.8
+  navie:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.1.2
+  redactor:
+    edition: standard
+    enabled: true
+    schemaVersion: 2.3.0
+  dumper:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  templatecomments:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  async-queue:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
 sections:
   54e60257-f31a-44aa-960e-bbd364197e28:
     name: Homepage
@@ -104,7 +141,7 @@ sections:
     enableVersioning: false
     propagationMethod: all
     siteSettings:
-      66514b58-f1c7-480d-b3d5-aca0b7d78f45:
+      feebb077-de74-4f70-86d6-5cfb99820eba:
         enabledByDefault: true
         hasUrls: true
         uriFormat: __home__
@@ -124,7 +161,7 @@ sections:
     enableVersioning: false
     propagationMethod: all
     siteSettings:
-      66514b58-f1c7-480d-b3d5-aca0b7d78f45:
+      feebb077-de74-4f70-86d6-5cfb99820eba:
         enabledByDefault: true
         hasUrls: false
         uriFormat: null
@@ -138,23 +175,23 @@ sections:
         titleFormat: null
         sortOrder: 1
 siteGroups:
-  29a5becc-aa82-4ea8-a790-5056591e422d:
+  17e20f8c-8423-49a1-b90f-5b633c44727e:
     name: $SITE_NAME
 sites:
-  66514b58-f1c7-480d-b3d5-aca0b7d78f45:
-    name: $SITE_NAME
+  feebb077-de74-4f70-86d6-5cfb99820eba:
     handle: default
-    language: en-US
     hasUrls: true
-    baseUrl: $SITE_URL
-    sortOrder: 1
+    baseUrl: '@web'
+    language: en-US
+    name: $SITE_NAME
     primary: true
-    siteGroup: 29a5becc-aa82-4ea8-a790-5056591e422d
+    siteGroup: 17e20f8c-8423-49a1-b90f-5b633c44727e
+    sortOrder: 1
 system:
-  edition: solo
-  name: $SITE_NAME
+  edition: pro
+  name: 'HAWK CraftCMS'
   live: true
-  schemaVersion: 3.3.6
+  schemaVersion: 3.3.3
   timeZone: America/Halifax
 users:
   requireEmailVerification: true
@@ -163,12 +200,21 @@ users:
   photoVolumeUid: null
   photoSubpath: ''
 volumes:
-  5c642d7e-b16b-4836-9575-668d75d242e5:
+  7ecd1ebd-978a-4658-b737-afe3333fc256:
     name: Site
     handle: site
     type: craft\volumes\Local
     hasUrls: true
-    url: '@assetsUrl/assets/site'
+    url: '@assetsUrl/site'
     settings:
       path: '@webroot/assets/site'
+    sortOrder: 2
+  dcbd85d8-6f4d-48bb-854f-63a188dae698:
+    name: Guide
+    handle: guide
+    type: craft\volumes\Local
+    hasUrls: true
+    url: '@assetsUrl/guide'
+    settings:
+      path: '@webroot/assets/guide'
     sortOrder: 1

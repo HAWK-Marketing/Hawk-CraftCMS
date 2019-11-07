@@ -3,19 +3,19 @@
         "composer/installers": "^1.7",
         "craftcms/cms": "^3.3",
         "craftcms/redactor": "^2.4",
+        "dutchheight/craft-navie": "^1.1",
         "fruitstudios/linkit": "^1.1",
-        "hawkca/components": "dev-master",
-        "hawkca/craft-admin": "dev-master",
+        "hawkca/craft-admin": "dev-master#e6ca0ee7b2487f94e5da434e1efe73cd3ef03e80",
         "nystudio107/craft-imageoptimize": "^1.0.0",
         "nystudio107/craft-minify": "^1.2",
         "nystudio107/craft-seomatic": "^3.2.0",
         "nystudio107/craft-templatecomments": "^1.1",
         "nystudio107/craft-twigpack": "^1.1.0",
         "oomphinc/composer-installers-extender": "^1.1",
+        "ostark/craft-async-queue": "^2.0",
         "platformsh/config-reader": "^2.3.0",
         "spicyweb/craft-neo": "^2.5.3",
         "studioespresso/craft-dumper": "^2.0",
-        "studioespresso/craft-navigate": "^2.4",
         "topshelfcraft/wordsmith": "^3.1.1",
         "verbb/field-manager": "^2.1.0",
         "vlucas/phpdotenv": "^3.6",
@@ -49,8 +49,7 @@
     "extra": {
         "installer-types": ["craft-module"],
         "installer-paths": {
-            "modules/hawk": ["hawkca/craft-admin"],
-            "modules/components": ["hawkca/components"]
+            "modules/hawk": ["hawkca/craft-admin"]
         },
         "installer-disable": [
             "craft"

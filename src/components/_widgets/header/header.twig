@@ -1,0 +1,75 @@
+{#
+    Use with
+
+    The attributes details can be found at https://docs.craftcms.com/v3/dev/functions.html#attr
+
+    Menu comes from the navigation plugin
+
+    {% include '@widgets/header/header' with
+        {
+            menu: 'handle of menu',
+            floating: true
+         }
+     %}
+#}
+
+{% set floating = false %}
+{% if header.value is defined %}
+    {% if header.value == "floating" %}
+        {% set floating = true %}
+    {% endif %}
+{% else %}
+    {% if header == "floating" %}
+        {% set floating = true %}
+    {% endif %}
+{% endif %}
+<header {% if floating == true %}class="floating"{% endif %}>
+    <div class="header--container">
+        <a href="/" class="logo">
+            Website
+        </a>
+
+        <nav>
+            {% set items = craft.navie.items().list(menu).all() %}
+            <ul>
+                {% nav item in items %}
+                    <li class="{% if item.hasDescendants %}has-children{% endif %} {% if item.getActive() %}active{% endif %}">
+                        <a href="{{ item.getUrl() }}" title="{{ item.title }}">
+                            {{- item.title -}}
+                        </a>
+
+                        {%- ifchildren -%}
+                            <ul class="second-level-items">
+                                {% children %}
+                            </ul>
+                        {%- endifchildren -%}
+                    </li>
+                {% endnav %}
+            </ul>
+
+            <div class="search-toggle">
+                <svg width="22" height="22" xmlns="http://www.w3.org/2000/svg">
+                    <g transform="translate(2.953 2)" stroke="#FFFFFF" stroke-width="4" fill="none" fill-rule="evenodd">
+                        <circle cx="6.5" cy="6.5" r="6.5"/>
+                        <path d="M11 11l6.324 7"/>
+                    </g>
+                </svg>
+            </div>
+
+            <div class="language-toggler mobile-language">
+                {% set urls = seomatic.helper.getLocalizedUrls() %}
+                {% for url in urls %}
+                    {% if url.language == 'en-US' %}
+                        {% if craft.app.language != 'en-US' %}
+                            <a href="{{ url.url }}" title="Go to English" class="language-toggle">English</a>
+                        {% endif %}
+                    {% else %}
+                        {% if craft.app.language != 'fr-CA' %}
+                            <a href="{{ url.url }}" title="Go to French" class="language-toggle">French</a>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </nav>
+    </div>
+</header>

@@ -8,6 +8,27 @@
  * @see craft\config\DbConfig
  */
 
+use Platformsh\ConfigReader\Config;
+
+$config = new Config();
+
+if ($config->isValidPlatform()) {
+    if ($config->hasRelationship('database')) {
+        $database = $config->credentials('database');
+
+        return [
+            'driver' => $database['scheme'],
+            'server' => $database['host'],
+            'user' => $database['username'],
+            'password' => $database['password'],
+            'database' => $database['path'],
+            'schema' => '',
+            'tablePrefix' => getenv('DB_TABLE_PREFIX'),
+            'port' => $database['port'],
+        ];
+    }
+}
+
 return [
     'driver' => getenv('DB_DRIVER'),
     'server' => getenv('DB_SERVER'),

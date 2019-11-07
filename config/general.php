@@ -8,7 +8,11 @@
  * @see \craft\config\GeneralConfig
  */
 
-return [
+use Platformsh\ConfigReader\Config;
+
+$config = new Config;
+
+$settings = [
     // Craft config settings from .env variables
     'aliases' => [
         '@assetsUrl' => getenv('ASSETS_URL'),
@@ -40,4 +44,34 @@ return [
     'useEmailAsUsername' => true,
     'usePathInfo' => true,
     'useProjectConfigFile' => true,
+    'preserveImageColorProfiles' => true
 ];
+
+if ($config->isValidPlatform()) {
+    $settings['securityKey'] = $config->projectEntropy;
+
+    if ($config->inRuntime()) {
+        $settings['resourceBasePath'] = $config->documentRoot . '/cpresources';
+        $settings['trusted_host_patterns'] = [];
+
+        foreach ($config->routes() as $url => $route) {
+            if ($route['primary'] == true) {
+                $settings['aliases']['@assetsUrl'] = $url . 'assets';
+                $settings['aliases']['@web'] = $url;
+                $settings['siteUrl'] = $url;
+            }
+        }
+
+        $settings['aliases']['@webroot'] = $config->documentRoot;
+
+        $settings['isSystemLive'] = true;
+        $settings['devMode'] = false;
+        $settings['enableTemplateCaching'] = true;
+        $settings['allowAdminChanges'] = true;
+        $settings['backupOnUpdate'] = true;
+        $settings['allowUpdates'] = false;
+        $settings['runQueueAutomatically'] = false;
+    }
+}
+
+return $settings;

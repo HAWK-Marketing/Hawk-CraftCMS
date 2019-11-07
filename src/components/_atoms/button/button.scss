@@ -1,0 +1,26 @@
+/**
+ * Button styling
+ */
+@import '../../../css/variables';
+
+.button {
+    padding: 2rem 5rem;
+    font-size: 1.4rem;
+    line-height: 1;
+    text-align: center;
+    font-family: $font-family-body;
+    font-weight: 900;
+    display: inline-block;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 250ms ease-in;
+    text-transform: uppercase;
+    border: 1px solid black;
+
+    &:focus,
+    &:hover,
+    &.active {
+        border: 1px solid red;
+    }
+}

@@ -1,0 +1,65 @@
+{#
+    Use with
+
+    The attributes details can be found at https://docs.craftcms.com/v3/dev/functions.html#attr
+
+    Types:
+
+    - outline
+    - default
+    - secondary
+    - download
+
+    Colors:
+
+    See variables.twig
+
+    {% include '@atoms/button/button' with
+        {
+            url: 'http://google.ca',
+            target: '_blank',
+            title: 'Button',
+            type: 'secondary',
+            attributes: {
+                class: ['button', 'button--pink']
+            }
+         }
+     %}
+#}
+{% if attributes is not defined %}
+    {% set attributes = [] %}
+{% endif %}
+
+{% if type is not defined %}
+    {% set type = 'default' %}
+{% endif %}
+
+{% if target is not defined %}
+    {% set target = '_self' %}
+{% endif %}
+
+{% if title is not defined %}
+    {% set title = '' %}
+{% endif %}
+
+{% set default = {
+    class: ['button', 'button--type-' ~ type],
+    title: title
+} %}
+
+{% set attributes = default|deep_merge(attributes) %}
+
+{% if url %}
+    <a
+        href="{{ url }}"
+        target="{{ target }}"
+        {% if target == "_blank" %}rel="noopener noreferrer"{% endif %}
+        {{ attr(attributes) }}
+    >
+        {{ text }}
+    </a>
+{% else %}
+    <button {{ attr(attributes) }}>
+        {{ text }}
+    </button>
+{% endif %}
